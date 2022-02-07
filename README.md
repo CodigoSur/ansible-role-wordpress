@@ -55,6 +55,7 @@ wp_debug: false
 wp_admin_email: 'admin@example.com'
 wp_webserver: nginx
 site_name: "{{ wp_sitename }}"
+wp_db_root_password: ''
 ```
  - ```wp_mysql_db```
  - ```wp_mysql_user```
