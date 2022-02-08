@@ -118,20 +118,8 @@
     name: "{{ wp_mysql_db }}"
     state: present
     login_unix_socket: /var/run/mysqld/mysqld.sock
-  when: >
-    wp_db_root_password is not defined or
-    wp_db_root_password | length == 0
-
-- name: Create mysql database passing mysql root password
-  mysql_db:
-    name: "{{ wp_mysql_db }}"
-    state: present
-    login_unix_socket: /var/run/mysqld/mysqld.sock
     login_user: root
     login_password: '{{ wp_db_root_password }}'
-  when:
-    - wp_db_root_password is defined
-    - wp_db_root_password | length > 0
 
 - name: Create mysql user
   mysql_user:
@@ -139,16 +127,5 @@
     password: "{{ wp_mysql_password }}"
     priv: '*.*:ALL'
     login_unix_socket: /var/run/mysqld/mysqld.sock
-  when: >
-    wp_db_root_password is not defined or
-    wp_db_root_password | length == 0
-
-- name: Create mysql user passing mysql root password
-  mysql_user:
-    name: "{{ wp_mysql_user }}"
-    password: "{{ wp_mysql_password }}"
-    priv: '*.*:ALL'
-    login_unix_socket: /var/run/mysqld/mysqld.sock
-  when:
-    - wp_db_root_password is defined
-    - wp_db_root_password | length > 0
+    login_user: root
+    login_password: '{{ wp_db_root_password }}'
