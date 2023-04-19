@@ -38,7 +38,7 @@
 
 - name: Wordpress | Extract archive in {{ wp_install_dir }}
   unarchive:
-    src: "http://wordpress.org/wordpress-{{ wp_version }}.tar.gz"
+    src: "http://wordpress.org/latest.tar.gz"
     dest: "{{ wp_install_dir }}"
     remote_src: yes
 
